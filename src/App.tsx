@@ -5,6 +5,7 @@ import QuestionCard from "./components/QuestionCard";
 import { fetchQuizQuestions } from "./API";
 // types
 import { QuestionState, Difficulty } from "./API";
+import { countReset } from "console";
 
 type AnswerObj = {
   question: string;
@@ -39,7 +40,24 @@ const App = () => {
     setLoading(false);
   };
 
-  const checkAnswers = (e: React.MouseEvent<HTMLButtonElement>) => {};
+  const checkAnswers = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!gameOver) {
+      // users answer
+      const answer = e.currentTarget.value;
+      // check answer
+      const correct = questions[number].correct_answer === answer;
+      // update score
+      if (correct) setScore((prev) => prev + 1);
+      // add answer to answersArr
+      const answerObj = {
+        question: questions[number].question,
+        answer,
+        correct,
+        correctAnswer: questions[number].correct_answer,
+      };
+      setUserAnswers((prev) => [...prev, answerObj]);
+    }
+  };
 
   const nextQuestion = () => {};
 
