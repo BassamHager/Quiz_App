@@ -1,10 +1,12 @@
 import React from "react";
+// types
+import { AnswerObj } from "../App";
 
 interface Props {
   question: string;
   answers: string[];
-  cb: any;
-  userAnswer: any;
+  cb: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  userAnswer: AnswerObj | undefined;
   questionNr: number;
   totalQuestions: number;
 }
@@ -26,7 +28,7 @@ const QuestionCard: React.FC<Props> = ({
       <div>
         {answers.map((ans) => (
           <div key={ans}>
-            <button value={ans} disabled={userAnswer} onClick={cb}>
+            <button value={ans} disabled={!!userAnswer} onClick={cb}>
               <span dangerouslySetInnerHTML={{ __html: ans }}></span>
             </button>
           </div>

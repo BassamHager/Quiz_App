@@ -8,7 +8,7 @@ import { QuestionState, Difficulty } from "./API";
 import { countReset } from "console";
 import { setgid } from "process";
 
-type AnswerObj = {
+export type AnswerObj = {
   question: string;
   answer: string;
   correct: boolean;
