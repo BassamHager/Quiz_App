@@ -6,6 +6,7 @@ import { fetchQuizQuestions } from "./API";
 // types
 import { QuestionState, Difficulty } from "./API";
 import { countReset } from "console";
+import { setgid } from "process";
 
 type AnswerObj = {
   question: string;
@@ -59,7 +60,14 @@ const App = () => {
     }
   };
 
-  const nextQuestion = () => {};
+  const nextQuestion = () => {
+    // check not last
+    const nextQuestion = number + 1;
+
+    nextQuestion === TOTAL_QUESTIONS
+      ? setGameOver(true)
+      : setNumber(nextQuestion);
+  };
 
   useEffect(() => {
     console.log(questions);
